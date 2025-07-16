@@ -1,0 +1,30 @@
+
+model_name_or_path: "your-model-name"
+output_dir: "./output"
+dataset_path: "ds_file_path.json"
+validation_split_ratio: 0.1
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 2
+num_train_epochs: 3
+learning_rate: 1e-5
+lr_scheduler_type: "linear"
+warmup_steps: 500
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.1
+target_modules: ["qkv", "query", "key", "value"]
+quantization_enable: true
+load_in_4bit: true
+bnb_4bit_compute_dtype: "float16"
+bnb_4bit_quant_type: "nf4"
+bnb_4bit_use_double_quant: true
+logging_steps: 200
+save_steps: 1000
+evaluation_strategy: "steps"
+eval_steps: 500
+save_strategy: "steps"
+save_total_limit: 5
+max_seq_length: 512
+early_stopping_patience: 3
+early_stopping_threshold: 0.001
+deepspeed: "ds_config_zero2.json"
